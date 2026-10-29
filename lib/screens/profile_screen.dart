@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wisata_candi_devintanjungan/providers/favorite_provider.dart';
+import 'package:wisata_candi_devintanjungan/widgets/profile_info_item.dart';
+import 'package:wisata_candi_devintanjungan/providers/auth_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -30,6 +34,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteCount =
+        context.watch<FavoriteProvider>().count;
+    final auth =
+        context.watch<AuthProvider>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -108,8 +117,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: 4,),
               Divider(color: Colors.deepPurple[100]),
               SizedBox(height: 20,),
-              isSignedIn
-                  ? TextButton(onPressed: signOut, child: const Text('Sign Out'))
+              auth.isSignedIn
+                  ? TextButton(onPressed: () =>
+                  context.read<AuthProvider>().signOut(),
+                  child: const Text('Sign Out'))
                   : TextButton(onPressed: signIn, child: const Text('Sign In')),
             ],
           ),
