@@ -132,7 +132,44 @@ class DetailScreen extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(right: 8),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              // TODO: Implementasi Tap untuk memperbesar gambar
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    backgroundColor: Colors.transparent,
+                                    insetPadding: const EdgeInsets.all(10),
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        // Gambar besar di tengah
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(16),
+                                          child: CachedNetworkImage(
+                                            imageUrl: candi.imageUrls[index],
+                                            fit: BoxFit.contain,
+                                            placeholder: (context, url) => const CircularProgressIndicator(),
+                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                          ),
+                                        ),
+                                        // Tombol Close di pojok kanan atas gambar
+                                        Positioned(
+                                          top: 20,
+                                          right: 20,
+                                          child: IconButton(
+                                            icon: const Icon(Icons.close, color: Colors.white, size: 30),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),

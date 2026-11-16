@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wisata_candi_devintanjungan/data/candi_data.dart';
+import 'package:wisata_candi_devintanjungan/screens/home_screen.dart';
 import 'package:wisata_candi_devintanjungan/screens/profile_screen.dart';
 import 'package:wisata_candi_devintanjungan/screens/detail_screen.dart';
 import 'package:wisata_candi_devintanjungan/screens/search_screen.dart';
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      // home: DetailScreen(candi: candiList[0],),
-      home: SearchScreen(),
+      //home: DetailScreen(candi: candiList[0],),
+      //home: SearchScreen(),
+      home: HomeScreen(),
     );
   }
 }

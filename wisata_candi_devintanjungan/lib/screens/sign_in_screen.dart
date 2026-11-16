@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
 import 'package:wisata_candi_devintanjungan/providers/auth_provider.dart';
+import 'package:wisata_candi_devintanjungan/data/candi_data.dart';
+import 'package:wisata_candi_devintanjungan/models/candi.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({super.key});
