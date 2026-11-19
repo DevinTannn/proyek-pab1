@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wisata_candi_devintanjungan/providers/auth_provider.dart';
 import 'package:wisata_candi_devintanjungan/widgets/profile_info_item.dart';
 import 'package:wisata_candi_devintanjungan/data/candi_data.dart';
 import 'package:wisata_candi_devintanjungan/models/candi.dart';
@@ -19,20 +21,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // TODO: 5. Implementasi fungsi signIn
   void signIn() {
-    setState(() {
-      isSignedIn = true;
-    });
+    Navigator.pushNamed(context, '/signin');
   }
 
   // TODO: 6. Implementasi fungsi signOut
   void signOut() {
-    setState(() {
-      isSignedIn = false;
-    });
+    context.read<AuthProvider>().signOut();
   }
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = context.watch<AuthProvider>();
+    isSignedIn = authProvider.isSignedIn;
+    if (authProvider.username.isNotEmpty) {
+      userName = authProvider.username;
+      fullName = authProvider.username;
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -139,4 +144,3 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-

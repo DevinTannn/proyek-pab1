@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:wisata_candi_devintanjungan/data/candi_data.dart';
 import 'package:wisata_candi_devintanjungan/models/candi.dart';
 
 class DetailScreen extends StatelessWidget {

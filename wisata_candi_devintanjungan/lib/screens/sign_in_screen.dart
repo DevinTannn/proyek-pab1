@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
 import 'package:wisata_candi_devintanjungan/providers/auth_provider.dart';
-import 'package:wisata_candi_devintanjungan/data/candi_data.dart';
-import 'package:wisata_candi_devintanjungan/models/candi.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({super.key});
@@ -76,7 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   // TODO: 7. ElevatedButton Sign In
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _signIn,
                     child: const Text('Sign In'),
                   ),
                   // TODO: 8. TextButton Sign Up
@@ -91,7 +89,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           style: const TextStyle(
                               color: Colors.blue,
                               decoration: TextDecoration.underline),
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()..onTap = () {
+                            Navigator.pushNamed(context, '/signup');
+                          },
                         ),
                       ],
                     ),

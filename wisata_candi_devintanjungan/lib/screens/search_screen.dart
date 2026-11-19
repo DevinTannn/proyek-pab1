@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wisata_candi_devintanjungan/models/candi.dart';
 import 'package:wisata_candi_devintanjungan/data/candi_data.dart';
+import 'package:wisata_candi_devintanjungan/screens/detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -52,50 +53,60 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
             ),
-          ), // Perbaikan: Ditambahkan tanda koma (,)
+          ),
           // TODO: 5. Buat ListView hasil pencarian sebagai anak dari Column
-          Expanded( // Perbaikan: Dibungkus Expanded agar ListView tidak overflow di dalam Column
+          Expanded(
             child: ListView.builder(
               itemCount: _filteredCandis.length,
               itemBuilder: (context, index) {
                 final candi = _filteredCandis[index];
-                return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        width: 100,
-                        height: 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            candi.imageAsset,
-                            fit: BoxFit.cover,
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailScreen(candi: candi),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          width: 100,
+                          height: 100,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              candi.imageAsset,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                candi.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  candi.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(candi.location),
-                            ],
+                                const SizedBox(height: 4),
+                                Text(candi.location),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
